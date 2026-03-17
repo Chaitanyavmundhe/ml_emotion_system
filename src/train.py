@@ -12,50 +12,50 @@ from features import build_features
 
 def train_emotion_classifier(X_train, y_state, save_dir='models/'):
     """
-    Train emotional state classifier.
-    Compares Random Forest vs XGBoost and saves the better one.
+    Train emotional state classifier with hyperparameter tuning.
     """
     print("\n--- Emotional State Classification ---")
 
-    # Label encode target
     from sklearn.preprocessing import LabelEncoder
+    from sklearn.model_selection import RandomizedSearchCV
+
     le = LabelEncoder()
     y_encoded = le.fit_transform(y_state)
 
-    # --- Random Forest ---
-    print("\nTraining Random Forest Classifier...")
-    rf = RandomForestClassifier(
-        n_estimators=200,
-        max_depth=15,
-        random_state=42,
-        n_jobs=-1
-    )
-    rf_scores = cross_val_score(rf, X_train, y_encoded, cv=5, scoring='accuracy')
-    print(f"RF Cross-val Accuracy: {rf_scores.mean():.4f} (+/- {rf_scores.std():.4f})")
-
-    # --- XGBoost ---
-    print("\nTraining XGBoost Classifier...")
+    # --- Tuned XGBoost ---
+    print("\nTuning XGBoost Classifier...")
     xgb = XGBClassifier(
-        n_estimators=200,
-        max_depth=6,
-        learning_rate=0.1,
         random_state=42,
         eval_metric='mlogloss',
         verbosity=0
     )
-    xgb_scores = cross_val_score(xgb, X_train, y_encoded, cv=5, scoring='accuracy')
-    print(f"XGB Cross-val Accuracy: {xgb_scores.mean():.4f} (+/- {xgb_scores.std():.4f})")
 
-    # --- Pick best model ---
-    if xgb_scores.mean() >= rf_scores.mean():
-        print("\nXGBoost wins — using XGBoost for emotional state.")
-        best_model = xgb
-    else:
-        print("\nRandom Forest wins — using Random Forest for emotional state.")
-        best_model = rf
+    param_dist = {
+        'n_estimators': [100, 200, 300],
+        'max_depth': [3, 4, 5, 6],
+        'learning_rate': [0.05, 0.1, 0.2],
+        'subsample': [0.7, 0.8, 1.0],
+        'colsample_bytree': [0.7, 0.8, 1.0],
+        'min_child_weight': [1, 3, 5]
+    }
 
-    # Train best model on full training data
-    best_model.fit(X_train, y_encoded)
+    search = RandomizedSearchCV(
+        xgb,
+        param_distributions=param_dist,
+        n_iter=20,
+        cv=5,
+        scoring='accuracy',
+        random_state=42,
+        n_jobs=-1,
+        verbose=1
+    )
+
+    search.fit(X_train, y_encoded)
+
+    print(f"\nBest Params: {search.best_params_}")
+    print(f"Best Cross-val Accuracy: {search.best_score_:.4f}")
+
+    best_model = search.best_estimator_
 
     # Save model and label encoder
     os.makedirs(save_dir, exist_ok=True)
@@ -64,7 +64,6 @@ def train_emotion_classifier(X_train, y_state, save_dir='models/'):
     print(f"Emotion classifier saved to {save_dir}")
 
     return best_model, le
-
 
 def train_intensity_regressor(X_train, y_intensity, save_dir='models/'):
     """
