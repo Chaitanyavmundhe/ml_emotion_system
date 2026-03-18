@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ML Emotion System</title>
+
+  <!-- React + Babel via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f1117;
+      color: #e0e0e0;
+      min-height: 100vh;
+      padding: 30px 20px;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #7c83fd;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      color: #888;
+      font-size: 0.95rem;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: #1a1d27;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+      border: 1px solid #2a2d3e;
+    }
+
+    .card h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #aaa;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    textarea {
+      width: 100%;
+      background: #0f1117;
+      border: 1px solid #2a2d3e;
+      border-radius: 8px;
+      color: #e0e0e0;
+      font-size: 1rem;
+      padding: 12px;
+      resize: vertical;
+      min-height: 100px;
+      outline: none;
+    }
+
+    textarea:focus { border-color: #7c83fd; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.82rem;
+      color: #888;
+      margin-bottom: 6px;
+    }
+
+    .field select,
+    .field input[type="range"] {
+      width: 100%;
+    }
+
+    .field select {
+      background: #0f1117;
+      border: 1px solid #2a2d3e;
+      border-radius: 6px;
+      color: #e0e0e0;
+      padding: 8px;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .field select:focus { border-color: #7c83fd; }
+
+    .range-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .range-val {
+      font-size: 0.9rem;
+      color: #7c83fd;
+      font-weight: 600;
+      min-width: 20px;
+    }
+
+    input[type="range"] {
+      accent-color: #7c83fd;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: #7c83fd;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn:hover { background: #6068f0; }
+    .btn:disabled { background: #444; cursor: not-allowed; }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .result-item {
+      background: #0f1117;
+      border-radius: 8px;
+      padding: 14px;
+      border: 1px solid #2a2d3e;
+    }
+
+    .result-item .label {
+      font-size: 0.75rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .result-item .value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #7c83fd;
+    }
+
+    .confidence-bar {
+      height: 6px;
+      background: #2a2d3e;
+      border-radius: 3px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+
+    .confidence-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.5s ease;
+    }
+
+    .message-box {
+      background: #0f1117;
+      border-left: 3px solid #7c83fd;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    .uncertain-badge {
+      display: inline-block;
+      background: #ff6b6b22;
+      color: #ff6b6b;
+      border: 1px solid #ff6b6b44;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .certain-badge {
+      display: inline-block;
+      background: #51cf6622;
+      color: #51cf66;
+      border: 1px solid #51cf6644;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .error-box {
+      background: #ff6b6b11;
+      border: 1px solid #ff6b6b44;
+      border-radius: 8px;
+      padding: 14px;
+      color: #ff6b6b;
+      font-size: 0.9rem;
+    }
+
+    .loading {
+      text-align: center;
+      color: #888;
+      padding: 20px;
+      font-size: 0.95rem;
+    }
+
+    .intensity-dots {
+      display: flex;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #2a2d3e;
+    }
+
+    .dot.active { background: #7c83fd; }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState } = React;
+
+const API = "http://localhost:8000";
+
+const STATE_COLORS = {
+  calm:        "#51cf66",
+  focused:     "#7c83fd",
+  neutral:     "#aaa",
+  restless:    "#ffa94d",
+  mixed:       "#cc5de8",
+  overwhelmed: "#ff6b6b",
+};
+
+function App() {
+  const [form, setForm] = useState({
+    journal_text:      "",
+    sleep_hours:       6,
+    energy_level:      3,
+    stress_level:      3,
+    time_of_day:       "morning",
+    previous_day_mood: "neutral",
+    reflection_quality:"clear",
+    ambience_type:     "forest",
+    duration_min:      15,
+    face_emotion_hint: "unknown",
+  });
+
+  const [result, setResult]   = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError]     = useState(null);
+
+  const update = (key, val) => setForm(f => ({ ...f, [key]: val }));
+
+  const submit = async () => {
+    if (!form.journal_text.trim()) {
+      setError("Please enter a journal reflection.");
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    setResult(null);
+
+    try {
+      const res = await fetch(`${API}/predict`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("API error");
+      const data = await res.json();
+      setResult(data);
+    } catch (e) {
+      setError("Could not reach the API. Make sure the server is running at localhost:8000.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const confColor = result
+    ? result.confidence > 0.6 ? "#51cf66"
+    : result.confidence > 0.4 ? "#ffa94d"
+    : "#ff6b6b"
+    : "#7c83fd";
+
+  return (
+    <div className="container">
+      <h1>🧠 ML Emotion System</h1>
+      <p className="subtitle">Enter your reflection and context signals to receive emotional insights and guidance.</p>
+
+      {/* Journal Input */}
+      <div className="card">
+        <h2>Journal Reflection</h2>
+        <textarea
+          placeholder="How did the session feel? Write freely..."
+          value={form.journal_text}
+          onChange={e => update("journal_text", e.target.value)}
+        />
+      </div>
+
+      {/* Context Signals */}
+      <div className="card">
+        <h2>Context Signals</h2>
+        <div className="grid">
+
+          <div className="field">
+            <label>Sleep Hours: {form.sleep_hours}</label>
+            <div className="range-row">
+              <input type="range" min="3" max="9" step="0.5"
+                value={form.sleep_hours}
+                onChange={e => update("sleep_hours", parseFloat(e.target.value))} />
+              <span className="range-val">{form.sleep_hours}h</span>
+            </div>
+          </div>
+
+          <div className="field">
+            <label>Energy Level: {form.energy_level}/5</label>
+            <div className="range-row">
+              <input type="range" min="1" max="5" step="1"
+                value={form.energy_level}
+                onChange={e => update("energy_level", parseInt(e.target.value))} />
+              <span className="range-val">{form.energy_level}</span>
+            </div>
+          </div>
+
+          <div className="field">
+            <label>Stress Level: {form.stress_level}/5</label>
+            <div className="range-row">
+              <input type="range" min="1" max="5" step="1"
+                value={form.stress_level}
+                onChange={e => update("stress_level", parseInt(e.target.value))} />
+              <span className="range-val">{form.stress_level}</span>
+            </div>
+          </div>
+
+          <div className="field">
+            <label>Session Duration (min)</label>
+            <div className="range-row">
+              <input type="range" min="5" max="35" step="5"
+                value={form.duration_min}
+                onChange={e => update("duration_min", parseInt(e.target.value))} />
+              <span className="range-val">{form.duration_min}m</span>
+            </div>
+          </div>
+
+          <div className="field">
+            <label>Time of Day</label>
+            <select value={form.time_of_day} onChange={e => update("time_of_day", e.target.value)}>
+              {["early_morning","morning","afternoon","evening","night"].map(t =>
+                <option key={t} value={t}>{t.replace("_"," ")}</option>
+              )}
+            </select>
+          </div>
+
+          <div className="field">
+            <label>Ambience</label>
+            <select value={form.ambience_type} onChange={e => update("ambience_type", e.target.value)}>
+              {["forest","ocean","rain","mountain","cafe"].map(a =>
+                <option key={a} value={a}>{a}</option>
+              )}
+            </select>
+          </div>
+
+          <div className="field">
+            <label>Previous Day Mood</label>
+            <select value={form.previous_day_mood} onChange={e => update("previous_day_mood", e.target.value)}>
+              {["calm","focused","neutral","mixed","restless","overwhelmed"].map(m =>
+                <option key={m} value={m}>{m}</option>
+              )}
+            </select>
+          </div>
+
+          <div className="field">
+            <label>Reflection Quality</label>
+            <select value={form.reflection_quality} onChange={e => update("reflection_quality", e.target.value)}>
+              {["clear","vague","conflicted"].map(q =>
+                <option key={q} value={q}>{q}</option>
+              )}
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Submit */}
+      <button className="btn" onClick={submit} disabled={loading}>
+        {loading ? "Analyzing..." : "Analyze My State →"}
+      </button>
+
+      {/* Error */}
+      {error && <div className="card" style={{marginTop:20}}>
+        <div className="error-box">{error}</div>
+      </div>}
+
+      {/* Loading */}
+      {loading && <div className="card" style={{marginTop:20}}>
+        <div className="loading">Thinking...</div>
+      </div>}
+
+      {/* Results */}
+      {result && (
+        <div className="card" style={{marginTop:20}}>
+          <h2>Results</h2>
+
+          {result.uncertain_flag === 1
+            ? <span className="uncertain-badge">⚠ Uncertain Prediction</span>
+            : <span className="certain-badge">✓ Confident Prediction</span>
+          }
+
+          <div className="result-grid">
+            <div className="result-item">
+              <div className="label">Emotional State</div>
+              <div className="value" style={{color: STATE_COLORS[result.predicted_state] || "#7c83fd"}}>
+                {result.predicted_state}
+              </div>
+            </div>
+
+            <div className="result-item">
+              <div className="label">Intensity</div>
+              <div className="value">{result.predicted_intensity} / 5</div>
+              <div className="intensity-dots">
+                {[1,2,3,4,5].map(i =>
+                  <div key={i} className={`dot ${i <= result.predicted_intensity ? "active" : ""}`} />
+                )}
+              </div>
+            </div>
+
+            <div className="result-item">
+              <div className="label">Recommended Activity</div>
+              <div className="value">{result.what_to_do.replace(/_/g," ")}</div>
+            </div>
+
+            <div className="result-item">
+              <div className="label">When</div>
+              <div className="value">{result.when_to_do.replace(/_/g," ")}</div>
+            </div>
+          </div>
+
+          {/* Confidence bar */}
+          <div className="result-item" style={{marginBottom:16}}>
+            <div className="label">Confidence — {(result.confidence * 100).toFixed(1)}%</div>
+            <div className="confidence-bar">
+              <div className="confidence-fill"
+                style={{width: `${result.confidence * 100}%`, background: confColor}} />
+            </div>
+          </div>
+
+          {/* Message */}
+          <div className="message-box">
+            💬 {result.supportive_message}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
