@@ -112,6 +112,52 @@ def train_intensity_regressor(X_train, y_intensity, save_dir='models/'):
 
     return best_model
 
+def train_intensity_classifier(X_train, y_intensity, save_dir='models/'):
+    """
+    Train intensity as classifier instead of regressor.
+    Handles ordinal nature better than regression on noisy data.
+    """
+    print("\n--- Intensity Classification ---")
+
+    from sklearn.model_selection import RandomizedSearchCV
+
+    xgb = XGBClassifier(
+        random_state=42,
+        eval_metric='mlogloss',
+        verbosity=0
+    )
+
+    param_dist = {
+        'n_estimators': [100, 200, 300],
+        'max_depth': [3, 4, 5],
+        'learning_rate': [0.05, 0.1, 0.2],
+        'subsample': [0.7, 0.8, 1.0],
+        'colsample_bytree': [0.7, 0.8, 1.0],
+    }
+
+    search = RandomizedSearchCV(
+        xgb,
+        param_distributions=param_dist,
+        n_iter=20,
+        cv=5,
+        scoring='neg_mean_absolute_error',
+        random_state=42,
+        n_jobs=-1,
+        verbose=1
+    )
+
+    search.fit(X_train, y_intensity-1)  # Shift to 0-4 for classification
+    print("Note: intensity labels shifted by -1 for XGBoost (1-5 → 0-4)")
+
+    print(f"\nBest Params: {search.best_params_}")
+    print(f"Best Cross-val MAE: {-search.best_score_:.4f}")
+
+    best_model = search.best_estimator_
+    joblib.dump(best_model, os.path.join(save_dir, 'intensity_classifier.pkl'))
+    print(f"Intensity classifier saved to {save_dir}")
+
+    return best_model
+
 
 def evaluate_on_train(classifier, regressor, le, X_train, y_state, y_intensity):
     """Quick sanity check — evaluate on full training data."""
@@ -139,6 +185,7 @@ if __name__ == "__main__":
     # Train models
     classifier, le = train_emotion_classifier(X_train, y_state)
     regressor = train_intensity_regressor(X_train, y_intensity)
+    intensity_clf = train_intensity_classifier(X_train, y_intensity)
 
     # Sanity check
     evaluate_on_train(classifier, regressor, le, X_train, y_state, y_intensity)
