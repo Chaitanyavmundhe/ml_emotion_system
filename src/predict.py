@@ -11,6 +11,71 @@ from features import build_features
 from uncertainty import get_confidence, get_uncertain_flag, get_intensity_confidence, summarize_uncertainty
 from recommend import decide, generate_message
 
+def robustness_check(row):
+    """
+    Check input quality before prediction.
+    Returns: warning flags dict
+
+    Handles:
+    - Very short text (word count <= 2)
+    - Missing values in key fields
+    - Contradictory signals (high energy + overwhelmed hint)
+    """
+    flags = {
+        'short_text': False,
+        'missing_values': False,
+        'contradictory_signals': False,
+        'robustness_warning': None
+    }
+
+    # --- Check 1: Very short text ---
+    word_count = len(str(row.get('journal_text', '')).split())
+    if word_count <= 2:
+        flags['short_text'] = True
+        flags['robustness_warning'] = "Very short text — prediction unreliable, defaulting to high uncertainty."
+
+    # --- Check 2: Missing values ---
+    key_fields = ['sleep_hours', 'energy_level', 'stress_level']
+    for field in key_fields:
+        if pd.isnull(row.get(field)):
+            flags['missing_values'] = True
+            flags['robustness_warning'] = f"Missing value in {field} — confidence reduced."
+            break
+
+    # --- Check 3: Contradictory signals ---
+    energy = row.get('energy_level', 3)
+    stress = row.get('stress_level', 3)
+    face = row.get('face_emotion_hint', '')
+
+    # High energy but tense face — contradiction
+    if energy >= 4 and stress >= 4:
+        flags['contradictory_signals'] = True
+        flags['robustness_warning'] = "High energy + high stress detected — conflicting signals, uncertainty increased."
+
+    # Very low sleep but calm face — contradiction
+    sleep = row.get('sleep_hours', 6)
+    if sleep <= 4 and face == 'calm_face':
+        flags['contradictory_signals'] = True
+        flags['robustness_warning'] = "Low sleep + calm face — contradictory signals detected."
+
+    return flags
+
+
+def apply_robustness_penalty(confidence, flags):
+    """
+    Reduce confidence score based on robustness flags.
+    """
+    if flags['short_text']:
+        confidence = min(confidence, 0.30)  # cap at 30%
+
+    if flags['missing_values']:
+        confidence = confidence * 0.80  # reduce by 20%
+
+    if flags['contradictory_signals']:
+        confidence = confidence * 0.85  # reduce by 15%
+
+    return round(confidence, 4)
+
 
 def load_models(model_dir='models/'):
     """Load all saved models and encoders."""
@@ -77,12 +142,27 @@ def predict(train_path, test_path, model_dir='models/', output_dir='outputs/'):
     when_list = []
     message_list = []
 
+    robustness_warnings = []
+
     for i in range(len(test)):
         state = predicted_state[i]
         intensity = predicted_intensity[i]
         stress = test['stress_level'].iloc[i]
         energy = test['energy_level'].iloc[i]
         time_of_day = test['time_of_day'].iloc[i]
+
+        # Robustness check
+        row = test.iloc[i].to_dict()
+        flags = robustness_check(row)
+        combined_confidence[i] = apply_robustness_penalty(
+            combined_confidence[i], flags
+        )
+
+        # If short text or contradictory — mark as uncertain
+        if flags['short_text'] or flags['contradictory_signals']:
+            uncertain_flag[i] = 1
+
+        robustness_warnings.append(flags['robustness_warning'])
 
         what, when = decide(state, intensity, stress, energy, time_of_day)
         message = generate_message(state, intensity, what, when)
@@ -100,7 +180,8 @@ def predict(train_path, test_path, model_dir='models/', output_dir='outputs/'):
         'uncertain_flag':      uncertain_flag,
         'what_to_do':          what_list,
         'when_to_do':          when_list,
-        'supportive_message':  message_list
+        'supportive_message':  message_list,
+        'robustness_warning':  robustness_warnings
     })
 
     # --- Step 9: Save predictions ---
