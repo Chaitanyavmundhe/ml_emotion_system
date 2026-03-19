@@ -240,3 +240,18 @@ This makes the extreme signal explicit and easier for the model to learn.
 | Conflict detection layer | Handle text vs metadata contradiction |
 | Sentence transformers | Better text representation |
 | Negation-aware features | Handle "not fully", "not sure" |
+
+---
+
+## Baseline Comparison
+
+| Target | Metric | Baseline | Our Model | Improvement |
+|---|---|---|---|---|
+| Emotional State | Accuracy | 18.58% | 51.33% | +32.75% |
+| Intensity | MAE | 1.19 | 1.23 | slightly worse |
+
+### Key finding:
+Emotional state prediction is meaningful — 2.76x better than random.
+Intensity prediction is weak — slightly worse than always predicting the mean.
+A production system should treat intensity as low confidence and rely
+more on user self-reporting for intensity calibration.
