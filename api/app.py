@@ -37,10 +37,11 @@ app.add_middleware(
 
 # --- Load models at startup ---
 print("Loading models...")
-classifier   = joblib.load("models/emotion_classifier.pkl")
-intensity_clf = joblib.load("models/intensity_classifier.pkl")
-le           = joblib.load("models/label_encoder.pkl")
-tfidf        = joblib.load("models/tfidf_vectorizer.pkl")
+classifier    = joblib.load("models/ensemble_classifier.pkl")
+intensity_clf = joblib.load("models/ensemble_intensity_classifier.pkl")
+le            = joblib.load("models/ensemble_label_encoder.pkl")
+tfidf         = joblib.load("models/tfidf_vectorizer.pkl")
+st_model      = joblib.load("models/sentence_transformer.pkl")
 print("Models loaded.")
 
 
@@ -82,9 +83,12 @@ def build_single_feature(input: UserInput):
         'mixed': 3, 'restless': 4, 'overwhelmed': 5
     }
 
-    # TF-IDF text features
+    # Sentence embeddings only (matches training pipeline)
     cleaned = input.journal_text.lower().strip()
-    X_text = tfidf.transform([cleaned])
+    X_emb = st_model.encode([cleaned], convert_to_numpy=True)
+
+    from scipy.sparse import hstack as sp_hstack, csr_matrix as csr
+    X_text = csr(X_emb)
 
     # Metadata features
     meta = {
@@ -111,9 +115,21 @@ def build_single_feature(input: UserInput):
         'face_emotion_hint_unknown':      1 if input.face_emotion_hint == 'unknown' else 0,
     }
 
-    from scipy.sparse import hstack, csr_matrix
-    X_meta = csr_matrix(np.array(list(meta.values())).reshape(1, -1))
-    X = hstack([X_text, X_meta])
+    # Engineered features
+    word_count = len(input.journal_text.split())
+    sleep_dep  = 1 if input.sleep_hours < 5 else 0
+    hs_le      = 1 if (input.stress_level >= 4 and input.energy_level <= 2) else 0
+    se_ratio   = input.stress_level / (input.energy_level + 1)
+    is_short   = 1 if word_count <= 3 else 0
+
+    meta['sleep_deprived']         = sleep_dep
+    meta['high_stress_low_energy'] = hs_le
+    meta['stress_energy_ratio']    = se_ratio
+    meta['text_word_count']        = word_count
+    meta['is_short_text']          = is_short
+
+    X_meta = csr(np.array(list(meta.values())).reshape(1, -1))
+    X = sp_hstack([X_text, X_meta])
 
     return X
 
