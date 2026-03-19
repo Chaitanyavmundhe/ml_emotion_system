@@ -41,20 +41,48 @@ def build_features(train, test, tfidf_max_features=300, save_dir='models/'):
 
     # --- Step 2: Metadata features ---
     print("Building metadata features...")
-    
+
     # Get ambience and face_emotion_hint one-hot columns dynamically
     ambience_cols = [c for c in train.columns if c.startswith('ambience_type_')]
     face_cols = [c for c in train.columns if c.startswith('face_emotion_hint_')]
-    
-    all_meta_cols = METADATA_COLS + ambience_cols + face_cols
-    
+
+    # --- Engineered features ---
+    for df in [train, test]:
+        # Binary: severely sleep deprived
+        df['sleep_deprived'] = (df['sleep_hours'] < 5).astype(int)
+
+        # Binary: high stress AND low energy — conflict signal
+        df['high_stress_low_energy'] = (
+            (df['stress_level'] >= 4) & (df['energy_level'] <= 2)
+        ).astype(int)
+
+        # Ratio: stress to energy balance
+        df['stress_energy_ratio'] = df['stress_level'] / (df['energy_level'] + 1)
+
+        # Text word count
+        df['text_word_count'] = df['cleaned_text'].str.split().str.len()
+
+        # Binary: very short text
+        df['is_short_text'] = (df['text_word_count'] <= 3).astype(int)
+
+    # Add engineered features to metadata
+    engineered_cols = [
+        'sleep_deprived',
+        'high_stress_low_energy',
+        'stress_energy_ratio',
+        'text_word_count',
+        'is_short_text'
+    ]
+
+    all_meta_cols = METADATA_COLS + ambience_cols + face_cols + engineered_cols
+
     # Keep only columns that exist in both train and test
     all_meta_cols = [c for c in all_meta_cols if c in train.columns and c in test.columns]
 
     X_train_meta = csr_matrix(train[all_meta_cols].values.astype(float))
     X_test_meta = csr_matrix(test[all_meta_cols].values.astype(float))
     print(f"Metadata shape — train: {X_train_meta.shape}, test: {X_test_meta.shape}")
-
+    
     # --- Step 3: Combine text + metadata ---
     X_train = hstack([X_train_text, X_train_meta])
     X_test = hstack([X_test_text, X_test_meta])
