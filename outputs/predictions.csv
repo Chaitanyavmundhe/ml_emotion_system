@@ -1,121 +1,121 @@
 id,predicted_state,predicted_intensity,confidence,uncertain_flag,what_to_do,when_to_do,supportive_message
-10001,focused,3,0.5701,0,light_planning,tonight,Great focus energy. Channel it into structured planning. Save this for tonight. Activity: light planning.
-10002,overwhelmed,4,0.2848,1,rest,later_today,Things feel heavy right now. Yoga or rest — let your body lead. Plan to do this later today. Activity: rest.
-10003,focused,4,0.5255,0,pause,tonight,Great focus energy. Channel it into structured planning. Save this for tonight. Activity: pause.
-10004,calm,5,0.3965,0,sound_therapy,now,You're in a good headspace. Use this clarity for some light planning. Start right now. Activity: sound therapy.
-10005,calm,5,0.3416,1,pause,within_15_min,You're in a good headspace. Use this clarity for some light planning. Try to do this within the next 15 minutes. Activity: pause.
-10006,mixed,3,0.3336,1,grounding,within_15_min,A lot seems to be swirling. Let's ground you first before anything else. Try to do this within the next 15 minutes. Activity: grounding.
-10007,restless,4,0.4018,0,pause,now,You seem quite restless. Yoga can help release that tension. Start right now. Activity: pause.
-10008,focused,2,0.2268,1,pause,within_15_min,You're in a focused state. A little planning now can go a long way. Try to do this within the next 15 minutes. Activity: pause.
-10009,restless,5,0.4875,0,yoga,tonight,You seem quite restless. Yoga can help release that tension. Save this for tonight. Activity: yoga.
-10010,overwhelmed,3,0.355,0,yoga,tonight,Things feel heavy right now. Yoga or rest — let your body lead. Save this for tonight. Activity: yoga.
-10011,overwhelmed,4,0.5097,0,rest,now,Things feel heavy right now. Yoga or rest — let your body lead. Start right now. Activity: rest.
-10012,calm,1,0.311,1,sound_therapy,within_15_min,You seem calm and settled. A gentle sound session can deepen that peace. Try to do this within the next 15 minutes. Activity: sound therapy.
-10013,mixed,3,0.383,0,grounding,within_15_min,A lot seems to be swirling. Let's ground you first before anything else. Try to do this within the next 15 minutes. Activity: grounding.
-10014,focused,3,0.3991,0,pause,within_15_min,Great focus energy. Channel it into structured planning. Try to do this within the next 15 minutes. Activity: pause.
-10015,mixed,4,0.3073,1,grounding,within_15_min,A lot seems to be swirling. Let's ground you first before anything else. Try to do this within the next 15 minutes. Activity: grounding.
-10016,neutral,4,0.3654,0,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
-10017,mixed,4,0.5122,0,grounding,within_15_min,A lot seems to be swirling. Let's ground you first before anything else. Try to do this within the next 15 minutes. Activity: grounding.
-10018,mixed,3,0.4503,0,grounding,tonight,A lot seems to be swirling. Let's ground you first before anything else. Save this for tonight. Activity: grounding.
-10019,neutral,4,0.2454,1,grounding,later_today,You seem unsettled beneath the surface. Grounding can help center you. Plan to do this later today. Activity: grounding.
-10020,calm,4,0.5158,0,sound_therapy,tonight,You're in a good headspace. Use this clarity for some light planning. Save this for tonight. Activity: sound therapy.
-10021,overwhelmed,3,0.426,0,rest,tonight,Things feel heavy right now. Yoga or rest — let your body lead. Save this for tonight. Activity: rest.
-10022,calm,4,0.4821,0,light_planning,within_15_min,You're in a good headspace. Use this clarity for some light planning. Try to do this within the next 15 minutes. Activity: light planning.
-10023,neutral,1,0.4256,0,pause,now,Things feel neutral right now. A short movement break can shift your energy. Start right now. Activity: pause.
-10024,neutral,4,0.2824,1,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
-10025,calm,1,0.3495,1,sound_therapy,now,You seem calm and settled. A gentle sound session can deepen that peace. Start right now. Activity: sound therapy.
-10026,neutral,4,0.2881,1,grounding,now,You seem unsettled beneath the surface. Grounding can help center you. Start right now. Activity: grounding.
-10027,mixed,2,0.3294,1,pause,tonight,Your feelings seem mixed right now. Pausing and breathing can bring clarity. Save this for tonight. Activity: pause.
-10028,restless,5,0.2678,1,pause,later_today,You seem quite restless. Yoga can help release that tension. Plan to do this later today. Activity: pause.
-10029,overwhelmed,5,0.2545,1,yoga,within_15_min,Things feel heavy right now. Yoga or rest — let your body lead. Try to do this within the next 15 minutes. Activity: yoga.
-10030,mixed,1,0.3998,0,pause,tonight,Your feelings seem mixed right now. Pausing and breathing can bring clarity. Save this for tonight. Activity: pause.
-10031,focused,4,0.4564,0,rest,within_15_min,Great focus energy. Channel it into structured planning. Try to do this within the next 15 minutes. Activity: rest.
-10032,restless,3,0.3536,1,yoga,tonight,You seem quite restless. Yoga can help release that tension. Save this for tonight. Activity: yoga.
-10033,overwhelmed,1,0.5665,0,rest,now,You seem a little overwhelmed. Rest is the kindest thing right now. Start right now. Activity: rest.
-10034,neutral,4,0.3052,1,grounding,now,You seem unsettled beneath the surface. Grounding can help center you. Start right now. Activity: grounding.
-10035,focused,4,0.4891,0,light_planning,within_15_min,Great focus energy. Channel it into structured planning. Try to do this within the next 15 minutes. Activity: light planning.
-10036,neutral,4,0.3266,1,grounding,now,You seem unsettled beneath the surface. Grounding can help center you. Start right now. Activity: grounding.
-10037,calm,2,0.3124,1,sound_therapy,now,You seem calm and settled. A gentle sound session can deepen that peace. Start right now. Activity: sound therapy.
-10038,focused,1,0.25,1,light_planning,tonight,You're in a focused state. A little planning now can go a long way. Save this for tonight. Activity: light planning.
-10039,mixed,1,0.3017,1,pause,tonight,Your feelings seem mixed right now. Pausing and breathing can bring clarity. Save this for tonight. Activity: pause.
-10040,mixed,5,0.5332,0,grounding,tonight,A lot seems to be swirling. Let's ground you first before anything else. Save this for tonight. Activity: grounding.
-10041,overwhelmed,4,0.5863,0,yoga,within_15_min,Things feel heavy right now. Yoga or rest — let your body lead. Try to do this within the next 15 minutes. Activity: yoga.
-10042,neutral,4,0.3363,0,grounding,later_today,You seem unsettled beneath the surface. Grounding can help center you. Plan to do this later today. Activity: grounding.
-10043,calm,1,0.4147,0,sound_therapy,tonight,You seem calm and settled. A gentle sound session can deepen that peace. Save this for tonight. Activity: sound therapy.
-10044,calm,1,0.5372,0,sound_therapy,tonight,You seem calm and settled. A gentle sound session can deepen that peace. Save this for tonight. Activity: sound therapy.
-10045,restless,5,0.4636,0,pause,within_15_min,You seem quite restless. Yoga can help release that tension. Try to do this within the next 15 minutes. Activity: pause.
-10046,neutral,2,0.4742,0,movement,tonight,Things feel neutral right now. A short movement break can shift your energy. Save this for tonight. Activity: movement.
-10047,focused,4,0.5516,0,light_planning,within_15_min,Great focus energy. Channel it into structured planning. Try to do this within the next 15 minutes. Activity: light planning.
-10048,overwhelmed,4,0.245,1,yoga,within_15_min,Things feel heavy right now. Yoga or rest — let your body lead. Try to do this within the next 15 minutes. Activity: yoga.
-10049,restless,4,0.3213,1,yoga,tonight,You seem quite restless. Yoga can help release that tension. Save this for tonight. Activity: yoga.
-10050,restless,3,0.2827,1,yoga,tonight,You seem quite restless. Yoga can help release that tension. Save this for tonight. Activity: yoga.
-10051,calm,3,0.4849,1,light_planning,later_today,You're in a good headspace. Use this clarity for some light planning. Plan to do this later today. Activity: light planning.
-10052,calm,3,0.377,0,light_planning,within_15_min,You're in a good headspace. Use this clarity for some light planning. Try to do this within the next 15 minutes. Activity: light planning.
-10053,calm,2,0.4669,0,sound_therapy,within_15_min,You seem calm and settled. A gentle sound session can deepen that peace. Try to do this within the next 15 minutes. Activity: sound therapy.
-10054,overwhelmed,3,0.2585,1,yoga,later_today,Things feel heavy right now. Yoga or rest — let your body lead. Plan to do this later today. Activity: yoga.
-10055,mixed,4,0.6094,0,grounding,now,A lot seems to be swirling. Let's ground you first before anything else. Start right now. Activity: grounding.
-10056,focused,4,0.3225,1,light_planning,now,Great focus energy. Channel it into structured planning. Start right now. Activity: light planning.
-10057,overwhelmed,5,0.5028,0,rest,later_today,Things feel heavy right now. Yoga or rest — let your body lead. Plan to do this later today. Activity: rest.
-10058,overwhelmed,3,0.302,1,yoga,later_today,Things feel heavy right now. Yoga or rest — let your body lead. Plan to do this later today. Activity: yoga.
-10059,mixed,4,0.412,0,grounding,now,A lot seems to be swirling. Let's ground you first before anything else. Start right now. Activity: grounding.
-10060,neutral,1,0.2679,1,sound_therapy,tonight,Things feel neutral right now. A short movement break can shift your energy. Save this for tonight. Activity: sound therapy.
-10061,calm,4,0.3585,0,light_planning,now,You're in a good headspace. Use this clarity for some light planning. Start right now. Activity: light planning.
-10062,restless,1,0.3576,0,grounding,now,There's some restlessness here. A grounding exercise can slow things down. Start right now. Activity: grounding.
-10063,restless,3,0.4324,0,pause,later_today,You seem quite restless. Yoga can help release that tension. Plan to do this later today. Activity: pause.
-10064,neutral,4,0.4376,0,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
-10065,neutral,5,0.5111,0,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
-10066,neutral,5,0.3242,0,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
-10067,restless,5,0.385,0,pause,tonight,You seem quite restless. Yoga can help release that tension. Save this for tonight. Activity: pause.
-10068,overwhelmed,3,0.5061,0,yoga,now,Things feel heavy right now. Yoga or rest — let your body lead. Start right now. Activity: yoga.
-10069,neutral,3,0.4402,0,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
-10070,neutral,1,0.3197,1,yoga,tonight,Things feel neutral right now. A short movement break can shift your energy. Save this for tonight. Activity: yoga.
-10071,mixed,5,0.2659,1,grounding,now,A lot seems to be swirling. Let's ground you first before anything else. Start right now. Activity: grounding.
-10072,calm,4,0.2906,1,yoga,within_15_min,You're in a good headspace. Use this clarity for some light planning. Try to do this within the next 15 minutes. Activity: yoga.
-10073,focused,4,0.2945,1,pause,now,Great focus energy. Channel it into structured planning. Start right now. Activity: pause.
-10074,mixed,4,0.4112,0,grounding,within_15_min,A lot seems to be swirling. Let's ground you first before anything else. Try to do this within the next 15 minutes. Activity: grounding.
-10075,restless,4,0.3255,1,yoga,now,You seem quite restless. Yoga can help release that tension. Start right now. Activity: yoga.
-10076,mixed,3,0.4643,0,grounding,now,A lot seems to be swirling. Let's ground you first before anything else. Start right now. Activity: grounding.
-10077,neutral,5,0.483,0,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
-10078,restless,3,0.3487,0,yoga,later_today,You seem quite restless. Yoga can help release that tension. Plan to do this later today. Activity: yoga.
-10079,restless,4,0.4628,0,pause,tonight,You seem quite restless. Yoga can help release that tension. Save this for tonight. Activity: pause.
-10080,focused,4,0.4116,0,light_planning,tonight,Great focus energy. Channel it into structured planning. Save this for tonight. Activity: light planning.
-10081,restless,4,0.4465,0,pause,now,You seem quite restless. Yoga can help release that tension. Start right now. Activity: pause.
-10082,focused,1,0.2831,1,light_planning,later_today,You're in a focused state. A little planning now can go a long way. Plan to do this later today. Activity: light planning.
-10083,neutral,4,0.3734,0,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
-10084,overwhelmed,3,0.4907,0,rest,within_15_min,Things feel heavy right now. Yoga or rest — let your body lead. Try to do this within the next 15 minutes. Activity: rest.
-10085,calm,1,0.5831,0,sound_therapy,tonight,You seem calm and settled. A gentle sound session can deepen that peace. Save this for tonight. Activity: sound therapy.
-10086,neutral,4,0.4261,0,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
-10087,mixed,2,0.5266,0,pause,now,Your feelings seem mixed right now. Pausing and breathing can bring clarity. Start right now. Activity: pause.
-10088,neutral,1,0.3201,1,movement,within_15_min,Things feel neutral right now. A short movement break can shift your energy. Try to do this within the next 15 minutes. Activity: movement.
-10089,calm,4,0.4339,0,sound_therapy,tonight,You're in a good headspace. Use this clarity for some light planning. Save this for tonight. Activity: sound therapy.
-10090,neutral,5,0.492,0,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
-10091,neutral,5,0.5864,0,grounding,now,You seem unsettled beneath the surface. Grounding can help center you. Start right now. Activity: grounding.
-10092,overwhelmed,4,0.3713,0,yoga,later_today,Things feel heavy right now. Yoga or rest — let your body lead. Plan to do this later today. Activity: yoga.
-10093,mixed,5,0.3275,1,grounding,tonight,A lot seems to be swirling. Let's ground you first before anything else. Save this for tonight. Activity: grounding.
-10094,focused,4,0.4969,0,pause,now,Great focus energy. Channel it into structured planning. Start right now. Activity: pause.
-10095,mixed,4,0.4965,0,grounding,tonight,A lot seems to be swirling. Let's ground you first before anything else. Save this for tonight. Activity: grounding.
-10096,overwhelmed,4,0.3995,1,rest,within_15_min,Things feel heavy right now. Yoga or rest — let your body lead. Try to do this within the next 15 minutes. Activity: rest.
-10097,neutral,4,0.3249,1,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
-10098,overwhelmed,5,0.553,0,rest,tonight,Things feel heavy right now. Yoga or rest — let your body lead. Save this for tonight. Activity: rest.
-10099,restless,4,0.3411,0,pause,now,You seem quite restless. Yoga can help release that tension. Start right now. Activity: pause.
-10100,mixed,5,0.3104,1,grounding,now,A lot seems to be swirling. Let's ground you first before anything else. Start right now. Activity: grounding.
-10101,restless,5,0.3287,1,pause,tonight,You seem quite restless. Yoga can help release that tension. Save this for tonight. Activity: pause.
-10102,neutral,1,0.2577,1,movement,tonight,Things feel neutral right now. A short movement break can shift your energy. Save this for tonight. Activity: movement.
-10103,restless,4,0.2972,1,pause,within_15_min,You seem quite restless. Yoga can help release that tension. Try to do this within the next 15 minutes. Activity: pause.
-10104,mixed,4,0.3144,1,grounding,tonight,A lot seems to be swirling. Let's ground you first before anything else. Save this for tonight. Activity: grounding.
-10105,calm,1,0.2896,1,sound_therapy,within_15_min,You seem calm and settled. A gentle sound session can deepen that peace. Try to do this within the next 15 minutes. Activity: sound therapy.
-10106,neutral,3,0.3768,0,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
-10107,focused,2,0.3548,1,rest,later_today,You're in a focused state. A little planning now can go a long way. Plan to do this later today. Activity: rest.
-10108,neutral,3,0.4168,0,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
-10109,neutral,4,0.3601,0,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
-10110,calm,1,0.3785,1,sound_therapy,now,You seem calm and settled. A gentle sound session can deepen that peace. Start right now. Activity: sound therapy.
-10111,mixed,4,0.4654,0,grounding,within_15_min,A lot seems to be swirling. Let's ground you first before anything else. Try to do this within the next 15 minutes. Activity: grounding.
-10112,mixed,1,0.3804,0,pause,later_today,Your feelings seem mixed right now. Pausing and breathing can bring clarity. Plan to do this later today. Activity: pause.
-10113,calm,3,0.2713,1,pause,now,You're in a good headspace. Use this clarity for some light planning. Start right now. Activity: pause.
-10114,neutral,4,0.2778,1,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
-10115,calm,3,0.6589,0,yoga,tonight,You're in a good headspace. Use this clarity for some light planning. Save this for tonight. Activity: yoga.
-10116,overwhelmed,3,0.3785,0,yoga,tonight,Things feel heavy right now. Yoga or rest — let your body lead. Save this for tonight. Activity: yoga.
-10117,neutral,5,0.3787,0,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
-10118,focused,4,0.267,1,light_planning,later_today,Great focus energy. Channel it into structured planning. Plan to do this later today. Activity: light planning.
-10119,mixed,4,0.2716,1,grounding,now,A lot seems to be swirling. Let's ground you first before anything else. Start right now. Activity: grounding.
-10120,restless,4,0.3259,1,yoga,within_15_min,You seem quite restless. Yoga can help release that tension. Try to do this within the next 15 minutes. Activity: yoga.
+10001,focused,3,0.5606,0,light_planning,tonight,Great focus energy. Channel it into structured planning. Save this for tonight. Activity: light planning.
+10002,restless,4,0.2803,1,pause,later_today,You seem quite restless. Yoga can help release that tension. Plan to do this later today. Activity: pause.
+10003,focused,4,0.5406,0,pause,tonight,Great focus energy. Channel it into structured planning. Save this for tonight. Activity: pause.
+10004,calm,5,0.4164,0,sound_therapy,now,You're in a good headspace. Use this clarity for some light planning. Start right now. Activity: sound therapy.
+10005,calm,5,0.3716,0,pause,within_15_min,You're in a good headspace. Use this clarity for some light planning. Try to do this within the next 15 minutes. Activity: pause.
+10006,mixed,3,0.2908,1,grounding,within_15_min,A lot seems to be swirling. Let's ground you first before anything else. Try to do this within the next 15 minutes. Activity: grounding.
+10007,restless,4,0.4127,0,pause,now,You seem quite restless. Yoga can help release that tension. Start right now. Activity: pause.
+10008,focused,2,0.2247,1,pause,within_15_min,You're in a focused state. A little planning now can go a long way. Try to do this within the next 15 minutes. Activity: pause.
+10009,restless,5,0.484,0,yoga,tonight,You seem quite restless. Yoga can help release that tension. Save this for tonight. Activity: yoga.
+10010,overwhelmed,5,0.3591,0,yoga,tonight,Things feel heavy right now. Yoga or rest — let your body lead. Save this for tonight. Activity: yoga.
+10011,overwhelmed,4,0.527,0,rest,now,Things feel heavy right now. Yoga or rest — let your body lead. Start right now. Activity: rest.
+10012,restless,1,0.3199,1,grounding,within_15_min,There's some restlessness here. A grounding exercise can slow things down. Try to do this within the next 15 minutes. Activity: grounding.
+10013,mixed,3,0.3566,1,grounding,within_15_min,A lot seems to be swirling. Let's ground you first before anything else. Try to do this within the next 15 minutes. Activity: grounding.
+10014,focused,3,0.376,0,pause,within_15_min,Great focus energy. Channel it into structured planning. Try to do this within the next 15 minutes. Activity: pause.
+10015,neutral,3,0.2721,1,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
+10016,neutral,4,0.3225,1,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
+10017,mixed,4,0.5156,0,grounding,within_15_min,A lot seems to be swirling. Let's ground you first before anything else. Try to do this within the next 15 minutes. Activity: grounding.
+10018,mixed,3,0.4395,0,grounding,tonight,A lot seems to be swirling. Let's ground you first before anything else. Save this for tonight. Activity: grounding.
+10019,neutral,4,0.252,1,grounding,later_today,You seem unsettled beneath the surface. Grounding can help center you. Plan to do this later today. Activity: grounding.
+10020,calm,4,0.513,0,sound_therapy,tonight,You're in a good headspace. Use this clarity for some light planning. Save this for tonight. Activity: sound therapy.
+10021,overwhelmed,3,0.4034,0,rest,tonight,Things feel heavy right now. Yoga or rest — let your body lead. Save this for tonight. Activity: rest.
+10022,calm,4,0.4666,0,light_planning,within_15_min,You're in a good headspace. Use this clarity for some light planning. Try to do this within the next 15 minutes. Activity: light planning.
+10023,neutral,1,0.4238,0,pause,now,Things feel neutral right now. A short movement break can shift your energy. Start right now. Activity: pause.
+10024,neutral,4,0.2946,1,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
+10025,calm,1,0.3499,1,sound_therapy,now,You seem calm and settled. A gentle sound session can deepen that peace. Start right now. Activity: sound therapy.
+10026,neutral,4,0.2927,1,grounding,now,You seem unsettled beneath the surface. Grounding can help center you. Start right now. Activity: grounding.
+10027,mixed,2,0.3347,1,pause,tonight,Your feelings seem mixed right now. Pausing and breathing can bring clarity. Save this for tonight. Activity: pause.
+10028,restless,5,0.2693,1,pause,later_today,You seem quite restless. Yoga can help release that tension. Plan to do this later today. Activity: pause.
+10029,overwhelmed,3,0.289,1,yoga,within_15_min,Things feel heavy right now. Yoga or rest — let your body lead. Try to do this within the next 15 minutes. Activity: yoga.
+10030,mixed,1,0.3798,0,pause,tonight,Your feelings seem mixed right now. Pausing and breathing can bring clarity. Save this for tonight. Activity: pause.
+10031,focused,4,0.4263,0,rest,within_15_min,Great focus energy. Channel it into structured planning. Try to do this within the next 15 minutes. Activity: rest.
+10032,restless,3,0.3811,1,yoga,tonight,You seem quite restless. Yoga can help release that tension. Save this for tonight. Activity: yoga.
+10033,overwhelmed,1,0.5698,0,rest,now,You seem a little overwhelmed. Rest is the kindest thing right now. Start right now. Activity: rest.
+10034,neutral,4,0.3116,1,grounding,now,You seem unsettled beneath the surface. Grounding can help center you. Start right now. Activity: grounding.
+10035,focused,4,0.4961,0,light_planning,within_15_min,Great focus energy. Channel it into structured planning. Try to do this within the next 15 minutes. Activity: light planning.
+10036,neutral,4,0.2866,1,grounding,now,You seem unsettled beneath the surface. Grounding can help center you. Start right now. Activity: grounding.
+10037,calm,2,0.3474,1,sound_therapy,now,You seem calm and settled. A gentle sound session can deepen that peace. Start right now. Activity: sound therapy.
+10038,focused,1,0.248,1,light_planning,tonight,You're in a focused state. A little planning now can go a long way. Save this for tonight. Activity: light planning.
+10039,mixed,1,0.3249,1,pause,tonight,Your feelings seem mixed right now. Pausing and breathing can bring clarity. Save this for tonight. Activity: pause.
+10040,mixed,5,0.5034,0,grounding,tonight,A lot seems to be swirling. Let's ground you first before anything else. Save this for tonight. Activity: grounding.
+10041,overwhelmed,4,0.5688,0,yoga,within_15_min,Things feel heavy right now. Yoga or rest — let your body lead. Try to do this within the next 15 minutes. Activity: yoga.
+10042,neutral,4,0.3058,1,grounding,later_today,You seem unsettled beneath the surface. Grounding can help center you. Plan to do this later today. Activity: grounding.
+10043,calm,1,0.3948,0,sound_therapy,tonight,You seem calm and settled. A gentle sound session can deepen that peace. Save this for tonight. Activity: sound therapy.
+10044,calm,1,0.5353,0,sound_therapy,tonight,You seem calm and settled. A gentle sound session can deepen that peace. Save this for tonight. Activity: sound therapy.
+10045,restless,5,0.4706,0,pause,within_15_min,You seem quite restless. Yoga can help release that tension. Try to do this within the next 15 minutes. Activity: pause.
+10046,neutral,2,0.4897,0,movement,tonight,Things feel neutral right now. A short movement break can shift your energy. Save this for tonight. Activity: movement.
+10047,focused,4,0.5566,0,light_planning,within_15_min,Great focus energy. Channel it into structured planning. Try to do this within the next 15 minutes. Activity: light planning.
+10048,overwhelmed,4,0.2453,1,yoga,within_15_min,Things feel heavy right now. Yoga or rest — let your body lead. Try to do this within the next 15 minutes. Activity: yoga.
+10049,restless,4,0.3107,1,yoga,tonight,You seem quite restless. Yoga can help release that tension. Save this for tonight. Activity: yoga.
+10050,restless,2,0.2877,1,grounding,tonight,There's some restlessness here. A grounding exercise can slow things down. Save this for tonight. Activity: grounding.
+10051,calm,3,0.4727,1,light_planning,later_today,You're in a good headspace. Use this clarity for some light planning. Plan to do this later today. Activity: light planning.
+10052,calm,3,0.3655,1,light_planning,within_15_min,You're in a good headspace. Use this clarity for some light planning. Try to do this within the next 15 minutes. Activity: light planning.
+10053,calm,2,0.4482,0,sound_therapy,within_15_min,You seem calm and settled. A gentle sound session can deepen that peace. Try to do this within the next 15 minutes. Activity: sound therapy.
+10054,overwhelmed,4,0.2591,1,yoga,later_today,Things feel heavy right now. Yoga or rest — let your body lead. Plan to do this later today. Activity: yoga.
+10055,mixed,4,0.6074,0,grounding,now,A lot seems to be swirling. Let's ground you first before anything else. Start right now. Activity: grounding.
+10056,focused,4,0.3267,1,light_planning,now,Great focus energy. Channel it into structured planning. Start right now. Activity: light planning.
+10057,overwhelmed,5,0.4744,0,rest,later_today,Things feel heavy right now. Yoga or rest — let your body lead. Plan to do this later today. Activity: rest.
+10058,overwhelmed,3,0.2711,1,yoga,later_today,Things feel heavy right now. Yoga or rest — let your body lead. Plan to do this later today. Activity: yoga.
+10059,mixed,4,0.3803,0,grounding,now,A lot seems to be swirling. Let's ground you first before anything else. Start right now. Activity: grounding.
+10060,focused,1,0.283,1,rest,tonight,You're in a focused state. A little planning now can go a long way. Save this for tonight. Activity: rest.
+10061,calm,4,0.3385,0,light_planning,now,You're in a good headspace. Use this clarity for some light planning. Start right now. Activity: light planning.
+10062,restless,1,0.3495,0,grounding,now,There's some restlessness here. A grounding exercise can slow things down. Start right now. Activity: grounding.
+10063,restless,3,0.4174,0,pause,later_today,You seem quite restless. Yoga can help release that tension. Plan to do this later today. Activity: pause.
+10064,neutral,4,0.4308,0,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
+10065,neutral,5,0.5273,0,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
+10066,neutral,1,0.2783,1,sound_therapy,tonight,Things feel neutral right now. A short movement break can shift your energy. Save this for tonight. Activity: sound therapy.
+10067,restless,5,0.3842,0,pause,tonight,You seem quite restless. Yoga can help release that tension. Save this for tonight. Activity: pause.
+10068,overwhelmed,3,0.4953,0,yoga,now,Things feel heavy right now. Yoga or rest — let your body lead. Start right now. Activity: yoga.
+10069,neutral,3,0.4727,0,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
+10070,neutral,5,0.2909,1,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
+10071,mixed,5,0.279,1,grounding,now,A lot seems to be swirling. Let's ground you first before anything else. Start right now. Activity: grounding.
+10072,neutral,4,0.3028,1,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
+10073,focused,4,0.3054,1,pause,now,Great focus energy. Channel it into structured planning. Start right now. Activity: pause.
+10074,mixed,4,0.413,0,grounding,within_15_min,A lot seems to be swirling. Let's ground you first before anything else. Try to do this within the next 15 minutes. Activity: grounding.
+10075,restless,4,0.3514,0,yoga,now,You seem quite restless. Yoga can help release that tension. Start right now. Activity: yoga.
+10076,mixed,3,0.4657,0,grounding,now,A lot seems to be swirling. Let's ground you first before anything else. Start right now. Activity: grounding.
+10077,neutral,5,0.508,0,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
+10078,restless,3,0.3898,0,yoga,later_today,You seem quite restless. Yoga can help release that tension. Plan to do this later today. Activity: yoga.
+10079,restless,4,0.4643,0,pause,tonight,You seem quite restless. Yoga can help release that tension. Save this for tonight. Activity: pause.
+10080,focused,4,0.4038,1,light_planning,tonight,Great focus energy. Channel it into structured planning. Save this for tonight. Activity: light planning.
+10081,restless,4,0.4172,0,pause,now,You seem quite restless. Yoga can help release that tension. Start right now. Activity: pause.
+10082,focused,1,0.281,1,light_planning,later_today,You're in a focused state. A little planning now can go a long way. Plan to do this later today. Activity: light planning.
+10083,neutral,4,0.3568,0,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
+10084,overwhelmed,3,0.543,0,rest,within_15_min,Things feel heavy right now. Yoga or rest — let your body lead. Try to do this within the next 15 minutes. Activity: rest.
+10085,calm,1,0.5441,0,sound_therapy,tonight,You seem calm and settled. A gentle sound session can deepen that peace. Save this for tonight. Activity: sound therapy.
+10086,neutral,5,0.3927,0,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
+10087,mixed,2,0.5416,0,pause,now,Your feelings seem mixed right now. Pausing and breathing can bring clarity. Start right now. Activity: pause.
+10088,mixed,5,0.3012,1,grounding,within_15_min,A lot seems to be swirling. Let's ground you first before anything else. Try to do this within the next 15 minutes. Activity: grounding.
+10089,calm,4,0.4117,0,sound_therapy,tonight,You're in a good headspace. Use this clarity for some light planning. Save this for tonight. Activity: sound therapy.
+10090,neutral,5,0.5073,0,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
+10091,neutral,5,0.5858,0,grounding,now,You seem unsettled beneath the surface. Grounding can help center you. Start right now. Activity: grounding.
+10092,overwhelmed,4,0.3697,0,yoga,later_today,Things feel heavy right now. Yoga or rest — let your body lead. Plan to do this later today. Activity: yoga.
+10093,mixed,5,0.3175,1,grounding,tonight,A lot seems to be swirling. Let's ground you first before anything else. Save this for tonight. Activity: grounding.
+10094,focused,4,0.5072,0,pause,now,Great focus energy. Channel it into structured planning. Start right now. Activity: pause.
+10095,mixed,4,0.5146,0,grounding,tonight,A lot seems to be swirling. Let's ground you first before anything else. Save this for tonight. Activity: grounding.
+10096,overwhelmed,4,0.397,1,rest,within_15_min,Things feel heavy right now. Yoga or rest — let your body lead. Try to do this within the next 15 minutes. Activity: rest.
+10097,neutral,4,0.2799,1,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
+10098,overwhelmed,4,0.5543,0,rest,tonight,Things feel heavy right now. Yoga or rest — let your body lead. Save this for tonight. Activity: rest.
+10099,restless,4,0.3583,0,pause,now,You seem quite restless. Yoga can help release that tension. Start right now. Activity: pause.
+10100,mixed,5,0.3038,1,grounding,now,A lot seems to be swirling. Let's ground you first before anything else. Start right now. Activity: grounding.
+10101,restless,5,0.3434,1,pause,tonight,You seem quite restless. Yoga can help release that tension. Save this for tonight. Activity: pause.
+10102,overwhelmed,1,0.2708,1,rest,tonight,You seem a little overwhelmed. Rest is the kindest thing right now. Save this for tonight. Activity: rest.
+10103,restless,4,0.3008,1,pause,within_15_min,You seem quite restless. Yoga can help release that tension. Try to do this within the next 15 minutes. Activity: pause.
+10104,neutral,4,0.3096,1,grounding,tonight,You seem unsettled beneath the surface. Grounding can help center you. Save this for tonight. Activity: grounding.
+10105,calm,1,0.2881,1,sound_therapy,within_15_min,You seem calm and settled. A gentle sound session can deepen that peace. Try to do this within the next 15 minutes. Activity: sound therapy.
+10106,neutral,2,0.4156,0,movement,within_15_min,Things feel neutral right now. A short movement break can shift your energy. Try to do this within the next 15 minutes. Activity: movement.
+10107,restless,2,0.3657,1,grounding,later_today,There's some restlessness here. A grounding exercise can slow things down. Plan to do this later today. Activity: grounding.
+10108,neutral,4,0.3955,0,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
+10109,neutral,3,0.4195,0,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
+10110,calm,1,0.3528,1,sound_therapy,now,You seem calm and settled. A gentle sound session can deepen that peace. Start right now. Activity: sound therapy.
+10111,mixed,4,0.4891,0,grounding,within_15_min,A lot seems to be swirling. Let's ground you first before anything else. Try to do this within the next 15 minutes. Activity: grounding.
+10112,mixed,1,0.452,0,pause,later_today,Your feelings seem mixed right now. Pausing and breathing can bring clarity. Plan to do this later today. Activity: pause.
+10113,calm,3,0.2711,1,pause,now,You're in a good headspace. Use this clarity for some light planning. Start right now. Activity: pause.
+10114,neutral,4,0.2654,1,grounding,within_15_min,You seem unsettled beneath the surface. Grounding can help center you. Try to do this within the next 15 minutes. Activity: grounding.
+10115,calm,3,0.6546,0,yoga,tonight,You're in a good headspace. Use this clarity for some light planning. Save this for tonight. Activity: yoga.
+10116,overwhelmed,3,0.3415,1,yoga,tonight,Things feel heavy right now. Yoga or rest — let your body lead. Save this for tonight. Activity: yoga.
+10117,calm,5,0.3994,0,sound_therapy,within_15_min,You're in a good headspace. Use this clarity for some light planning. Try to do this within the next 15 minutes. Activity: sound therapy.
+10118,focused,4,0.2588,1,light_planning,later_today,Great focus energy. Channel it into structured planning. Plan to do this later today. Activity: light planning.
+10119,mixed,4,0.2658,1,grounding,now,A lot seems to be swirling. Let's ground you first before anything else. Start right now. Activity: grounding.
+10120,restless,4,0.3508,0,yoga,within_15_min,You seem quite restless. Yoga can help release that tension. Try to do this within the next 15 minutes. Activity: yoga.
