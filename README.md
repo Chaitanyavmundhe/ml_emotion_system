@@ -9,26 +9,34 @@ recommend meaningful actions, and guide users toward better mental states.
 ## Project Structure
 ```
 ml_emotion_system/
+├── api/
+│   └── app.py                  # FastAPI server
 ├── data/
-│   ├── raw/              # Original dataset (not tracked in git)
-│   └── processed/        # Cleaned and transformed data
-├── models/               # Saved trained models (not tracked in git)
-├── notebooks/            # EDA and analysis notebooks
-│   ├── 01_eda.ipynb
-│   ├── 02_ablation_study.ipynb
-│   └── 03_error_analysis.ipynb
-├── outputs/              # Final predictions CSV
+│   ├── raw/                    # Original dataset (not tracked in git)
+│   └── processed/              # Cleaned and transformed data
+├── models/                     # Saved trained models (not tracked in git)
+├── notebooks/
+│   ├── 01_eda.ipynb            # Exploratory data analysis
+│   ├── 02_ablation_study.ipynb # Ablation study
+│   ├── 03_error_analysis.ipynb # Error analysis
+│   └── 04_improvement.py       # Accuracy improvement experiments
+├── outputs/
+│   ├── predictions.csv         # Final predictions
+│   └── ablation_study.png      # Ablation study chart
 ├── src/
-│   ├── preprocess.py     # Data cleaning and encoding
-│   ├── features.py       # TF-IDF + metadata feature engineering
-│   ├── train.py          # Model training (XGBoost + Random Forest)
-│   ├── predict.py        # Full prediction pipeline
-│   ├── recommend.py      # Decision engine (what + when)
-│   └── uncertainty.py    # Confidence scoring and uncertain flags
-├── ERROR_ANALYSIS.md     # 10 failure case analysis
-├── EDGE_PLAN.md          # Mobile and offline deployment plan
-├── requirements.txt      # Python dependencies
-└── main.py               # End-to-end pipeline entry point
+│   ├── preprocess.py           # Data cleaning and encoding
+│   ├── features.py             # TF-IDF + metadata feature engineering
+│   ├── embeddings.py           # Sentence transformer embeddings + ensemble
+│   ├── train.py                # Model training (XGBoost + Random Forest)
+│   ├── predict.py              # TF-IDF prediction pipeline
+│   ├── recommend.py            # Decision engine (what + when)
+│   └── uncertainty.py          # Confidence scoring and uncertain flags
+├── ui/
+│   └── index.html              # React UI demo
+├── ERROR_ANALYSIS.md           # 10 failure case analysis
+├── EDGE_PLAN.md                # Mobile and offline deployment plan
+├── main.py                     # End-to-end ensemble pipeline entry point
+└── requirements.txt            # Python dependencies
 ```
 
 ---
@@ -59,25 +67,37 @@ Place `train.csv` and `test.csv` into `data/raw/`.
 
 ## How to Run
 
-### Step 1 — Preprocess
+### Run full pipeline at once (recommended)
+```bash
+python main.py
+```
+
+### Step by step
+
+#### Step 1 — Preprocess
 ```bash
 python src/preprocess.py
 ```
 
-### Step 2 — Train models
+#### Step 2 — Train base models
 ```bash
 python src/train.py
 ```
 
-### Step 3 — Generate predictions
+#### Step 3 — Generate ensemble predictions
 ```bash
-python src/predict.py
+python src/embeddings.py
 ```
 
-### Run full pipeline at once
+### Run API server
 ```bash
-python main.py
+uvicorn api.app:app --reload
 ```
+
+API docs available at: `http://localhost:8000/docs`
+
+### Open UI
+Open `ui/index.html` in your browser while the API server is running.
 
 Output saved to `outputs/predictions.csv`.
 
@@ -106,6 +126,7 @@ emotional states depending on context. This means:
 - Unigrams + bigrams (captures "felt heavy", "okay session")
 - min_df=2 to remove noise
 - sublinear_tf=True to dampen high frequency terms
+- Sentence Transformer (all-MiniLM-L6-v2) — 384-dim semantic embeddings
 
 ### Metadata Features
 - sleep_hours (continuous, median imputed)
@@ -118,8 +139,16 @@ emotional states depending on context. This means:
 - ambience_type (one-hot encoded)
 - face_emotion_hint (one-hot encoded, missing → "unknown")
 
+### Engineered Features
+- sleep_deprived (binary: sleep < 5 hours)
+- high_stress_low_energy (binary: stress ≥ 4 AND energy ≤ 2)
+- stress_energy_ratio (stress / energy+1)
+- text_word_count (number of words in reflection)
+- is_short_text (binary: word count ≤ 3)
+
 ### Combined Matrix
-319 total features = 300 TF-IDF + 19 metadata
+- TF-IDF pipeline: 324 features (300 TF-IDF + 24 metadata)
+- Ensemble pipeline: 408 features (384 embeddings + 24 metadata)
 
 ---
 
@@ -128,18 +157,22 @@ emotional states depending on context. This means:
 ### Emotional State Classification
 - Algorithm: XGBoost Classifier
 - Tuning: RandomizedSearchCV (20 iterations, 5-fold CV)
-- Cross-val Accuracy: ~50%
-- Note: 50% on a noisy 6-class problem is 3x better than random (16.7%)
+- Cross-val Accuracy: ~51% (ensemble pipeline)
+- Note: 51% on a noisy 6-class problem is 3x better than random (16.7%)
 
 ### Intensity Prediction
 - Algorithm: XGBoost Classifier (ordinal treated as classification)
 - Labels shifted -1 for XGBoost compatibility (1-5 → 0-4)
-- Cross-val MAE: ~1.6
 
-### Why not deep learning?
-- Average text length is 11 words — too short for transformers to shine
-- TF-IDF captures the available signal efficiently
-- XGBoost is faster, more interpretable, and runs on-device
+### Text Representation
+- TF-IDF: 300 features, unigrams + bigrams
+- Sentence Transformer: all-MiniLM-L6-v2, 384-dim embeddings
+- Final pipeline uses sentence embeddings + metadata (408 features)
+
+### Why not larger transformers?
+- Average text length is 11 words — short texts limit transformer benefit
+- all-MiniLM-L6-v2 is lightweight (~90MB) and runs on-device
+- Larger models gave marginal gains on this noisy dataset
 
 ---
 
@@ -189,12 +222,15 @@ Based on time of day + stress level band.
 
 | Model | Cross-val Accuracy |
 |---|---|
-| Text Only | 52.0% |
+| Text Only (TF-IDF) | 52.0% |
 | Metadata Only | 17.8% |
-| Text + Metadata | 49.7% |
+| Text + Metadata (TF-IDF) | 49.7% |
+| Sentence Embeddings only | 53.2% |
+| Ensemble (TF-IDF + Embeddings + Metadata) | 53.7% |
 
 Text is the primary signal. Metadata alone cannot predict emotional state.
-Combining them does not always help due to noise introduction.
+Sentence embeddings outperform TF-IDF on short emotional texts.
+Final improvement over baseline: +4%.
 
 ---
 
@@ -212,13 +248,44 @@ Combining them does not always help due to noise introduction.
 | what_to_do | Recommended activity |
 | when_to_do | Timing recommendation |
 | supportive_message | Human-like guidance message |
-| robustness_warning | Warning if input quality is low |
+
+---
+
+## API
+
+FastAPI server with auto-documentation.
+
+### Start server
+```bash
+uvicorn api.app:app --reload
+```
+
+### Endpoints
+| Endpoint | Method | Description |
+|---|---|---|
+| / | GET | Health check |
+| /predict | POST | Full prediction pipeline |
+| /health | GET | Server status |
+| /docs | GET | Interactive API documentation |
+
+### Example request
+```bash
+curl -X POST http://localhost:8000/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "journal_text": "felt heavy and tired today",
+    "sleep_hours": 5,
+    "energy_level": 2,
+    "stress_level": 4,
+    "time_of_day": "night"
+  }'
+```
 
 ---
 
 ## Limitations and Honest Observations
 
-1. ~50% cross-val accuracy reflects genuine label noise, not model failure
+1. ~51% cross-val accuracy reflects genuine label noise, not model failure
 2. Short texts carry insufficient signal for reliable prediction
 3. Same text maps to different emotions — irreducible uncertainty
 4. Metadata alone is not predictive of emotional state
@@ -228,8 +295,9 @@ Combining them does not always help due to noise introduction.
 
 ## Future Improvements
 
-- Sentence transformers for richer text embeddings
-- sleep_deprived binary feature for extreme outlier detection
+- Better sleep deprivation feature engineering
 - Conflict detection layer for contradictory text + metadata
 - Federated learning for on-device personalization
 - Merge early_morning → morning to fix rare class problem
+- Larger sentence transformer for richer embeddings
+- Label noise handling techniques
