@@ -1,8 +1,13 @@
 pandas
-numpy
+numpy<2
 scikit-learn
 xgboost
 scipy
 joblib
 matplotlib
 jupyter
+fastapi
+uvicorn
+pydantic
+sentence-transformers==2.7.0
+torch==2.2.0
